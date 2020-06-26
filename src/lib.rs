@@ -16,7 +16,7 @@ mod test {
     }
 
     #[test]
-    fn expect_correct_head() {
+    fn expect_head_to_not_be_none() {
         let mut li = LinkedList::new();
         li.insert(String::from("one"));
         li.insert(String::from("two"));

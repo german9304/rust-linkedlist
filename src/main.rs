@@ -1,11 +1,21 @@
+
 fn main() {
+   let items = vec![
+       String::from("run"),
+       String::from("walk"),
+       String::from("read"),
+       String::from("eat"),
+   ];
+
    let mut li = linked_list::LinkedList::new();
-   li.insert(String::from("one"));
-   li.insert(String::from("two"));
-   li.insert(String::from("three"));
+   
+   // insert elements into linked list
+   for item in items {
+       li.insert(item);
+    }
 
    for item in li.iter() {
-       println!("item {}", item);
+       println!("{}", item);
    }
 
 }
