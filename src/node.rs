@@ -17,7 +17,6 @@ mod test {
     }
 }
 
-
 pub struct Node {
     item: String,
     next: Option<Box<Node>>,
