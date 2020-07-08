@@ -38,4 +38,8 @@ impl Node {
     pub fn next(&self) -> &Option<Box<Node>> {
         &self.next
     }
+
+    pub fn next_mut(self) -> Option<Box<Node>> {
+        self.next
+    }
 }

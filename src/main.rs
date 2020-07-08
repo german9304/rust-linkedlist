@@ -16,4 +16,16 @@ fn main() {
     for item in li.iter() {
         println!("{}", item);
     }
+    println!("");
+
+    let removed = li.remove();
+    println!("after head is removed");
+    match removed {
+        Some(val) => {
+            for item in val.iter() {
+                println!("{}", item);
+            }
+        }
+        None => println!("none"),
+    }
 }

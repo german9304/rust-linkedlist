@@ -4,6 +4,13 @@ mod node;
 mod test {
     use super::*;
 
+    fn set_up() -> LinkedList {
+        let mut li = LinkedList::new();
+        li.insert(String::from("one"));
+        li.insert(String::from("two"));
+        li
+    }
+
     #[test]
     fn create_list() {
         let mut li = LinkedList::new();
@@ -15,12 +22,22 @@ mod test {
 
     #[test]
     fn expect_head_to_not_be_none() {
-        let mut li = LinkedList::new();
-        li.insert(String::from("one"));
-        li.insert(String::from("two"));
+        let li = set_up();
         let one = String::from("two");
         if let Some(head) = li.head() {
             assert_eq!(head.item(), &one);
+        }
+    }
+
+    #[test]
+    fn removed_item() {
+        let li = set_up();
+        let removed = li.remove();
+        let one = String::from("one");
+        if let Some(list) = removed {
+            if let Some(head) = list.head {
+                assert_eq!(head.item(), &one);
+            }
         }
     }
 }
@@ -71,6 +88,20 @@ impl LinkedList {
 
     pub fn head(&self) -> &Option<Box<node::Node>> {
         &self.head
+    }
+
+    // don't return a reference since a new linked listed will be returned
+    pub fn remove(mut self) -> Option<LinkedList> {
+        if let Some(current_item) = self.head {
+            self.head = current_item.next_mut();
+            let items = &self.items();
+            return Some(LinkedList {
+                head: self.head,
+                items: *items,
+            });
+        }
+
+        return None;
     }
 
     pub fn insert(&mut self, item: String) {
